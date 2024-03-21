@@ -77,18 +77,6 @@ So if we only have 1 core and the fisr number in load avrg is 1.5 menas that the
 itop
 ```
 
-#### Tools to see Network activity
-```
-iftop
-bmon
-nethogs
-```
-
-#### Modify a process priority
-```
-sudo renice <PriorityToAdd> <PID>
-```
-
 #### See process info in the current terminal
 ```
 ps
@@ -110,6 +98,20 @@ ps -ef
 ```
 Multiple options can be used in top to chnage the view like `b` or `x`. Press H while on top for more info.
 
+#### Tools to see Network activity
+```
+iftop
+bmon
+nethogs
+```
+
+#### Modify a process priority
+```
+sudo renice <PriorityToAdd> <PID>
+```
+
+
+### Testing performance
 #### Testing RAM
 Boot and press `Shift` to get into the GRUB. Then select `Memory test`
 
@@ -120,17 +122,14 @@ sudo tune2fs -l /dev/sdXX
 ```
 The `state` field must be `clean` if everything is ok
 
-
 #### Testing Speed of reading information from cache and disk
 ```
 sudo hdparm -tT /dev/sdXx
 ```
 `t` tells to test the speed of reading form the disk, while `T` from disk´s cache
 
-#### CPU info
 
-
-### Hardware info 
+## Hardware info 
 To get general info about CPU:
 ```
 lscpu
