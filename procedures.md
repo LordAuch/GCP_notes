@@ -96,3 +96,7 @@ Once the `Makefile` is created we can just run `make` command to build the packa
 make install
 ```
 This command moves all the necesary files to global folders like `/usr/bin` or `/usr/lib`.
+
+
+
+
