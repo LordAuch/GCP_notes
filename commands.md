@@ -109,7 +109,7 @@ nethogs
 ```
 sudo renice <PriorityToAdd> <PID>
 ```
-
+ETL Data warehouse Buffer de mensaje
 
 ### Testing performance
 #### Testing RAM
@@ -130,6 +130,19 @@ sudo hdparm -tT /dev/sdXx
 
 
 ## Hardware info 
+#### RAM space used and available
+```
+free 
+free -H
+```
+
+#### Disk space used and available
+```
+df
+df -H
+```
+
+#### general info
 To get general info about CPU:
 ```
 lscpu
@@ -151,6 +164,138 @@ List kernel modules (drivers)
 lsmod
 ```
 
+
+## Logs 
+#### See kernel log 
+```
+dmesg
+dmesg -H (humanized)
+```
+
+#### See system logs
+System logs can be found in `/var/log`
+
+#### See auth.log
+This will show us the log for everytime a user tried `sudo` anr a `ssh` connection was attemped.
+
+#### See the vmost recent few logins to the system
+```
+last
+```
+
+#### See who is logged in
+```
+who
+```
+
+####  See users and their last log
+```
+lastlog
+```
+
+#### Add a log entry
+Use `logger`:
+```
+echo test | logger
+```
+
+## awk command - pattern scanning and text processing language
+This command (`awk`) allow us to extract just the info we're interested in. It's pretty useful to do reports
+and extremely powerful combined with scripting.
+```
+TODO
+```
+
+## User management
+#### Craete an user
+```
+sudo adduser test
+sudo adduser --system test2
+```
+
+#### Modify an user
+See man page for reference
+```
+sudo usermod <username>
+```
+#### Delete user
+```
+sudo deluser
+```
+
+#### Info about user and groups
+```
+groups <username>
+id <username>
+```
+
+#### Create new group
+```
+sudo add group
+```
+
+#### Add user to group
+```
+sudo adduser <username> <groupName>
+sudo usermode -a -G <Groups> <username> 
+```
+
+#### Modify a goup
+```
+sudo modgroup
+```
+
+#### Deltee group
+```
+sudo delgroup
+```
+
+#### See users and groups
+```
+cat /etc/passwd
+cat /etc/group
+```
+
+#### Change password
+```
+passwd
+```
+
+#### Change shell
+```
+chsh
+```
+
+#### See user passwords
+```
+cat /etc/shadow
+```
+
+#### Config used by adduser to create an user
+Sets homefolder, home skeleton dir, env vars, etc...
+```
+/etc/adduser.conf
+```
+
+#### Set up the skeleton folder
+```
+/etc/skel
+```
+
+#### Enviroenemnt for users
+```
+/etc/profile
+/etc/profile.d/  (recommended to make a file .sh here)
+```
+
+#### See resoruces used by user
+```
+top -u <username>
+ps -u <username>
+```
+
+
+
 ## Misc 
 #### Power Down
 ```
@@ -158,7 +303,6 @@ shutdown -r now (reboot)
 shutdown -h now (power off)
 shutdown -c (cancel shutdown)
 ```
-
 
 #### See kernel version
 ```
@@ -172,7 +316,7 @@ ldd <binFileName>
 this coomands show us the shared libs (`.so`) files the bin needs and the expected location.
 
 
-#### See Chache of assosiations ldconfig keeps
+#### See cache of assosiations ldconfig keeps
 ```
 ldconfig -p
 ```
@@ -188,13 +332,8 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/custom
 Add your custom path to the folllowing file
 ```
 /etc/ld.so.conf
+ldconfig (To update)
 ```
-After editing, run
-```
-ldconfig
-```
-To update.
-
 
 #### Print top and tail lines
 Pipe the output to `head` or `tail`.

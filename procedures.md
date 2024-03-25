@@ -98,5 +98,10 @@ make install
 This command moves all the necesary files to global folders like `/usr/bin` or `/usr/lib`.
 
 
-
+### Cron
+Cron allow us to schedule tasks. In order to understand how it works check the following links:
+```
+https://cron.help
+https://crontab.guru
+```
 
