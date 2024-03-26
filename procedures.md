@@ -105,3 +105,67 @@ https://cron.help
 https://crontab.guru
 ```
 
+### Encrypt a partition
+There are 2 tools that result useful for this puropose:
+1. dm-crypt
+2. LUKS
+These tools are available through `cryptssetup` package.
+NOTE: Before encrypting your partition make sure you backup your data. It will be erased during process.
+To encrypt the partition:
+```
+cryptsetup luksFormat /dev/<partition>
+```
+NOTE: Make sure you save your password without this is impossible to recover data.
+Dm-Crypt sits between the actual storage and the virtual disk given by dm-crypt.
+Give the virtual partition a format. First open the virtual disk
+```
+cryptsetup open /dev/<partition> <NameOfVirtualDisk>
+```
+Navigate to it. It is located at `/dev/mapper`, then:
+```
+mkfs.<format> /dev/mapper/<partition>
+```
+Finally just mount it. You will have to open and mount it everytime it´s closed.
+When you´re done with it umount it and MAKE SURE you close it
+```
+cryptsetup close <NameOfVirtualDisk>
+```
+
+
+### Mount a filesystem
+Create a folder for the partiton in `/mnt/`
+```
+mkdit /mnt/myDrive
+```
+Mount the partition into the folder you created previously
+```
+mount /dev/<partition> /mnt/myDrive
+```
+When you're done with it you can unmount it
+```
+umountnn /mnt/myDrive
+```
+Note: If its an encrypted disk make dure to clode it after umount.
+
+
+### Autimatically mount a filesystem
+We can tell the system to mount a fs when boot, to do this we use the file `/etc/fstab`.
+An important option when adding removable filesystems is to add the option `nofail` in options to prevent errors if thereś no such disk.
+NOTE: Its recomended to use the UUID name instead of the partion name of the disk as it may change.
+
+
+### Configure a DHCP server
+Dynamic Host Configuration Protocol automatically assigns IP adresses and communication parameters to devices connected to the network using a client
+Install `isc-dhcp-server` in host (server) machine
+```
+sudo apt install isc-dhcp-server
+```
+There are 2 files that we are mainly interested in:
+1. /etc/default/isc-dhcp-server
+	We need to set here the interface where the service is listening
+2. /etc/dhcp/dhcpd.conf
+	Here we set all the other options.
+
+The DCHP service listens for broadcast messages so it needs to listen a network interface, not a particular network address
+We listen to the ethernet interface `enp0s3`. If your server has more than one ethernet interface you need to determine which one you want the 
+service to run on. You set have more than one 

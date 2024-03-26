@@ -223,7 +223,7 @@ sudo usermod <username>
 sudo deluser
 ```
 
-#### Info about user and groups
+#### Info about user and groupsl
 ```
 groups <username>
 id <username>
@@ -340,4 +340,37 @@ Pipe the output to `head` or `tail`.
 Example:
 ```
 ps -ef | head
+```
+
+#### See storage attached to the system
+```
+blkid
+```
+UUID: Universal Unique ID
+This value is created when volume was created. 
+```
+lsblk
+```
+
+#### See all info of a disk
+```
+udevadm info /dev/<disk>
+```
+#### I/O info parameters of the disk
+```
+blkid -i /dev/<disk>
+```
+
+#### Create and manage partitions
+```
+fdisk
+cfdisk
+gparted
+parted
+```
+
+#### Create a filesystem in a partirion
+```
+mkfs.<format>
+gparted
 ```
