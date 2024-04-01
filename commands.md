@@ -39,6 +39,11 @@ This is the inverse operation to `systemctl disable`
 systemctl enable <ServiceName>
 ```
 
+#### See the default runlevel for the system
+```
+systemctl get-defualt
+```
+
 #### Change the default `runlevel` mode (Which mode the OS boot with)
 To see available modes consult `runlevel` man page
 ```
@@ -49,6 +54,11 @@ systemctl set-default <mode>
 To see available modes consult `runlevel` man page
 ```
 systemctl isolate <mode>
+```
+
+#### List currently active targets
+```
+systemctl list-units --type target
 ```
 
 
@@ -295,6 +305,12 @@ ps -u <username>
 ```
 
 
+## Virtualization
+#### Check if my processor supports virtualization
+```
+egrep "(vmx|svm)" /proc/cpuinfo
+```
+
 
 ## Misc 
 #### Power Down
@@ -374,3 +390,5 @@ parted
 mkfs.<format>
 gparted
 ```
+
+

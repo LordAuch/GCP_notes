@@ -169,3 +169,47 @@ There are 2 files that we are mainly interested in:
 The DCHP service listens for broadcast messages so it needs to listen a network interface, not a particular network address
 We listen to the ethernet interface `enp0s3`. If your server has more than one ethernet interface you need to determine which one you want the 
 service to run on. You set have more than one 
+
+
+### Systemd 
+The system may run in different `runlevels`. Each runlevel requires a particular set of services to run.
+To see what services a runlevel wants to run we can dive into:
+```
+/etc/systemd/system/<runlevel>.wants/
+```
+All services listed within `/etc/systemd/` are symlinks to `/lib/systemd/`.
+When creating our own service we can place it in `/etc/systemd/system/` or `/etc/systemd/user/`
+
+
+### Configure a SSH server and client
+HOST
+Install `openssh-server` in host:
+```
+sudo apt install openssh-server
+```
+The instalation automatically creates and starts to run the service.
+Client will be able to connect to the server on port 22. 
+Configuration of the ssh verver can be found in `/etc/ssh/sshd_config`
+
+By default all users can login with their username and pswd, but we can manage it with:
+```
+AllowUsers <user1> <user2>
+DenyUsers <user1> <user2>
+AllowGroups <group>
+DenyGroups <group>
+```
+If we modify the service we need to re-run it:
+```
+sudo systemctl restart sshd
+```
+
+CLIENT
+install the `openssh-client`:
+```
+sudo apt install openssh-client
+```
+To connect to hust simply run:
+```
+ssh <username>:<HOST_IP> 
+```
+We can modify `.ssh/config` to add hosts so we can conncet to them fatser.
