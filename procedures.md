@@ -213,3 +213,13 @@ To connect to hust simply run:
 ssh <username>:<HOST_IP> 
 ```
 We can modify `.ssh/config` to add hosts so we can conncet to them fatser.
+
+
+### Ranger - NAvigate in the console
+`Ranger` is a tool that lets you navigate through the console easily.
+```
+sudo apt install ranger
+```
+
+### Undersanting STDOUT and STDERR in Linux
+
