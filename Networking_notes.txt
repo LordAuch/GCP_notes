@@ -1,0 +1,101 @@
+===========================================================	
+		NETWORKS KEYPOINTS:
+===========================================================
+
+=================== HARDWARE ==============================
+* MAC Adress
+	+ Assigned by manufacter, unmutable
+
+* IPv4 and IPv6	
+	+ IPv4 32bits
+	+ IPv6 128bits
+* Devices:
+	+ NIC: Network interface controller
+	+ Ethernet Switches (GIG): Allows to have more ethernet ports
+	+ Router: Allows to have internet conection
+
+* Wires
+	+ UTP: Unshielded twisted pair
+	+ STP: Shielded twisted pair
+	+ RJ-45 connector for UTS and STP.
+	+ Fiber-optic
+		- Multimode
+		- Single mode: High quality
+
+==================== OSI - TCP/IP MODEL ===============================
+	   (Open Systems Interconection)
+Each of these layeres represent a differenet network function.
+TCP/IP combines some layers of OSI model.
+________________________________________________________________________________________
+  TCP/IP MODEL	|   OSI  | DESSCRIPTION
+________________________________________________________________________________________
+| APPLICATION	| Layer 7 | Application: User interface. HTTP/HTTPS
+| APPLICATION	| Layer 6 | Presentation: How data is represented. Encrypt protocols, image format.
+| APPLICATION 	| Layer 5 | Session: establishing, monitoring, etc. APIs
+| TRANSPORT 	| Layer 4 | Transport:	Logical connections protocols. TCP and UDP. Data as "Segments"
+| INTERNET  	| Layer 3 | Network: Logical addressing. IP Addressing. Data as "Packets"
+| NET INETRFACE	| Layer 2 | Data Link: Physical addressing. MAC address. Ethernet switches. Data as "Frames"
+| NET INETRFACE	| Layer 1 | Pyhisical: Network cabling or raido waves. Data as "Bits"
+________________________________________________________________________________________
+
+
+
+======================= LOW LEVEL DATA TRANSMITION PROTOCOLS ==========================
+* TCP - Reliable communication
+	+ Confirms that data transmission was successfully
+
+* UDP - Unreliable communication
+	+ Doesn't confirm that data transmission was successfully
+
+
+======================== NETWORK SERVICES ===========================================
+* HTTP
+	+ TCP Port 80
+
+* HTTPS
+	+ TCP Port 443
+
+* DNS - Somain Name System
+	+ Allows us to connect to a server knowing the name of the server instead of the IP
+	+ TCP or UDP Port 53
+
+* NTP - Network Time Protocol - Atomic CLocks!
+	+ UDP Port 123
+	+ In a network, devices should agree what time it is
+	+ Stratum number: The lower this number is, the more reliable it is.
+	  If stratum reach 16, its considered as invalid time source.
+		- Atomic Clocks: Stratum = 0
+		- Internet Based NTP server = 1
+		- Server that learns from NTP server = 2	
+
+* DHCP - Dynamic Host Configuration Protocol
+	+ Assigns IP adreesses dinamically
+	+ UDP Port 67
+	+ DORA: Discover, Offer, Request, Acknowledgement
+	+ If there´s a router between DHCP server and client, we need to configure router a "DHCP relay agent"
+	+ For IPv6 DHCP server: Stateful and Stateless
+
+* NAT - Network Adress Translation
+	+ Allows to have one set of privates IPs and translate that set into one(using PAT) or more public IPs.
+	+ Public IPs are those that can be connected to the internet.
+	+ PAT: Port Address Translation: Allows to use a single public IP to route all privates IPs
+		- Source IP: Private IP assigned and source port number. i.e. <PRIVATE_IP>:<DYNAMIC_PORT>
+		- Destination IP: Unique public IP available. i.e <PUBLIC_IP>:<PORT>
+
+* QoS - Quality of Service - Congestion
+	+ Manage unfairness. Treating some traffic better than other (Based on business needs)
+	+ Colection of features:
+		- Classification and marking (priority)
+		- Queuing (traffic buffer)
+	+ It´s useful when we have periodic times of congestion. If it's all the time, we need more bandwidth.
+
+
+================================ LAN ==========================================
+* LAN types
+	+ Ad Hoc: No infrastructure needed. One device comunicate with each other as with Bluetooh
+	 Infrastructure: Need to be connected to a network
+
+* Antena types, freqs:
+	+ 2 type sof antena, onmidirectional and directional
+	+ 2 freqs: 2.4GHz and 5Ghz
+	

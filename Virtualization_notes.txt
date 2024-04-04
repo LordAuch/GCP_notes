@@ -1,0 +1,67 @@
+===========================================================	
+		VIRTUALIZATION KEYPOINTS:
+===========================================================
+
+
+* Types of virtualization:
+	+ Full virtualization
+		- Hardware Virtual Machine (HVM)
+		- Emulates whole the computer: Mother board, RAM, etc...
+		- Emulating CPU is slow, although some CPU allows to run instructions from VM directly in the CPU
+		- Allows to install any OS
+	+ Paravirtualization
+		The OS knows its running virtulization
+
+* QEMU+KVS
+	+ Together allow to bring up virtual machines
+	+ QEMU allows allows us to emulate hardware
+	+ If possible, QEMU will use KVM to run instructions directly in the CPU
+	+ KVS lets the instrucions pass from the VM to the processor
+
+* Hypervisor 
+	+ A piece of software, firmware ir hardware that creates and runs virtual machines
+	+ a HOST is the machine that runs the hypervisor, GUEST machines are created by hypervisor
+	+ Type 1 (Native or Bare metal):
+		- Hypervisor act as the OS and craetes the virtual machines
+		- Hypervisor doesn´t run on any OS.
+	+ Type 2 (Hosted):
+		- Hypervisor runs on an OS. In this case Hypervisor act as an application of the OS
+
+* Troubleshooting:
+	+ Unique IP and MAC Adress
+		- Signal: Slow network performance
+	+ Software Firewalls
+		- Signal: Not allowed traffic. Check both host and guests!
+	+ Host/Guests Network adapater
+		- Signal: No host internet connection. Slow net performance (Adapter satured!)
+		- Up to date drivers
+
+
+
+
+# Python code​​​​​​‌​‌​‌‌‌​​‌‌‌‌​​‌​‌‌​‌​​​‌ below
+# Use print("messages...") to debug your solution.
+
+import re 
+
+show_expected_result = False
+show_hints = False
+
+
+# Your code goes here.
+def is_palindrome(teststr):
+    ### Santize the string
+    parsedStr = teststr.lower().replace(" ", "")  
+    parsedStr = re.sub("[^a-z]", "", parsedStr)
+    print(f"######\n{parsedStr}")
+
+    #String to list to make it easier
+    str1 = list(parsedStr)
+    str2 = str1[::-1]
+    
+    # Evaluate 
+    if str1 == str2:
+        return True
+    return False
+ 
+   

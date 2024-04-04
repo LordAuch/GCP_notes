@@ -1,0 +1,251 @@
+======================================================================================
+			KEYPOINTS FOR GCP TRAINING
+======================================================================================
+In order to have a good understanding of GCP the following concepts must be understood.
+Use the following keypoints as a guide to study!
+
+ 
+* Ways to interact with GCP
+	+ Google Cloud Shell
+	+ Google Cloud SDK
+	+ Web Interface (Google Cloud console)
+
+* Difference between IaaS, PaaS, SaaS. 
+	+ IaaS: Raw compute, Pay ahead for resources
+	+ PaaS: Offers a set of libs that privide access to the infrestucture, Pay for what they use
+	+ SaaS: Applications that run in the cloud as a service
+
+* Google Cloud Infrestucture:
+	+ From bottom to top:
+		Networking and Security
+		Compute and Storage
+		Big data an ML products 
+
+* GCP Locations:
+	+ 5 major locations
+	+ Locations divided in regions, regions divided in zones 
+	+ A zone is where services are deployed
+	
+* IaaS google offers:
+	+ Compute Engine
+
+* PaaS google offers:
+	+ App Engine
+	+ Cloud Functions
+
+* GCP service that offers IaaS capililities as well as PaaS:
+	+GKE: Google Kubernetes Engine
+		Allows to manage clusters of Docker containers
+
+* GCP Service that offers advanced cluster management features:
+	+ Google Kubernetes Engine (GKE)
+	+Includes:
+		Load Balancers
+		Node Pools
+		Automatic Scaling
+		Logging and monitoring
+
+* Options for storage in GCP (Database & storage services):
+	+ Cloud storage
+	+ Cloud SQL--------------¬
+	+ Cloud Spanner------------ Relational 
+	+ Firestone -----------¬
+	+ Cloud Bigtable -------- NO relational
+
+*Difference between structured and unstructured storage:
+	+ Unstrucured data: files, images, audio, text msgs, etc. (assests)
+	+ Structured data: Info you tipically store in SQL like names, adresses, cellphone, etc.
+		- Transactional workload: fast and simple queries
+		- Analytical workload: Analyze petabytes of info
+
+* Bucket (for Storage)
+	- A bucket in GCP is where you place the storage. You can have multiple buckets.
+	  Everything you want to store MUST be in a bucket. 
+
+* APIs
+	+ Cloud Endpoints:
+		Develop, manage and deploy APIs WITHIN Google Cloud
+	+ Apigee
+		Manage APIs that dont need to be in Google Cloud
+	+ Pub/Sub
+		Publishers send messages to a channel, subscribers receive those messages.
+
+* Service Management
+	+ Is an infrastructure service of Google Cloud, to create and manage APIs and services.
+
+* What is a VPC (Virtual private cloud):
+	+ help to Isolate projects
+	+ Secure, individual private cloud hosted within a public cloud (like Google Cloud)
+	+ VPCs connect Google cloud resources to each other and to the internet
+	+ A VPC is composed of subnetworks (subnets) 
+	+ Auto mode VPC
+		- Create automatically subnets. Automatic management
+	+ Custom modeVPC
+		- Doesn't create subnets automatically. Full management
+
+* Subnetworks (subnets)
+	+ Each subnet must have a CIDR IP address
+	+ CIDR determines what range of INTERNAL IP adresses will be used within the subnet
+	+ Internal IPs are only used for communication within the VPC and can't be routed to internet
+	+ IPv4 
+		- Ss composed for 4 Octets (4x8bits) so its 32bits long
+		- The number of the end determines how many bits are static
+
+* GCP Network services
+	+ GC VPC
+	+ Cloud load balancing: high performnce scalable for GC
+		- Ensure Consistent performance for users
+	+ Cloud CDN (Content delivery network)
+		- Serves content to end users with high availabily by storing files close to the user.
+	+ Cloud Interconnect
+		- Connect your own infrastructure to Google's network.
+	+ Cloud DNS
+		- Domain Name System server provided by Google
+ 		
+* Firewall Rules
+	- Rules that manage and control the who can connect to a network
+
+* Service accounts
+	- Service accounts that instances can use to perform tasks that require certain permissions
+	- Multiple roles, each role has differnt permission scopes
+
+* Load balanacing 
+	+ Distribute user traffic across multiple instances of an application. Reduce risk of performance issues
+	+ Cloud Load Balancing
+
+* Cloud Load Balancing
+	+ Run on VCP
+	+ Fully distributed managed service.
+	+ You dont have to worry about scaling or managing them
+	+ You can put Load balanacing in front of:
+		- HTTP(S)
+		- TCP traffic
+		- SSL traffic
+		- UDP traffic
+	
+*Cloud Armor
+	+ IP allowlist/denylist enable you to restrict or allow access to your HTTP(S) load balancer
+	+ This prevents malicious users or traffic from consuming resources or entering your VPC networks.
+
+* IaC (Infrastructure as Code)
+	+ Templates that define infrastructures. Automatically create environments
+	+ Terraform
+
+* Terraform
+	+ Is an IaC tool Open Source
+	+ Uses HashiCorp COnfiguration Language (HCL)
+	+ The template determines the actions needed to create the environment
+	+ Terraform uses the APIs to deploy your resources
+	
+
+* Google Cloud Operations Suite
+	+ Monitoring Services
+======================================================================================
+					CONCEPTS
+======================================================================================
+
+* Troughput
+	How much data can be transfered within a given timeframe
+
+* Latency
+	The times it takes for data to pass from one point to another acorss the network
+
+*AutoScalability
+	The ability of a Cloud service to increase or decrease the resources accoring to the load.
+
+* Quota:
+	Limit the resources
+
+
+
+======================================================================================
+					COMMANDS
+======================================================================================
+General comand line tool: `gcloud`
+
+|GENERAL|
+	list active account name:
+		gcloud auth list
+	list project ID
+		gcloud config list project
+	set region
+		gcloud config set compute/region "REGION"
+	
+
+|COMPUTE|
+	Create a VM:
+		gcloud compute intances create
+
+	List VMs:
+		gcloud compute instances list --sort-by=ZONE
+
+	Create a AppEngine instance:
+		gcloud app create --region="$REGION"
+	
+	Deploy app
+		gcloud app deploy
+	
+	View app:
+		gcloud app browse
+	
+	Create VPC:
+		gcloud compute networks create <NAME>
+
+	Create Subnetworks:
+		gcloud compute networks subnets create <NAME>
+
+	List Networks
+		gcloud compute networks list
+
+	List Subnets:
+		gcloud compute networks subnets list --sort-by=NETWORK
+
+|STORAGE|
+The Cloud Storage utility tool is `gsutil`
+
+	Create a bucket
+		gsutil mb
+		gsutil mb gs://<YOUR-BUCKET-NAME>
+
+	Copy files between bucket and local dir [Same sytax than linux]
+		gsutil cp <FILE> <DESTINATION>
+		gsutil cp ada.jpg gs://YOUR-BUCKET-NAME
+		gsutil cp -r gs://YOUR-BUCKET-NAME/ada.jpg .
+		gsutil cp gs://YOUR-BUCKET-NAME/ada.jpg gs://YOUR-BUCKET-NAME/image-folder/
+
+	Move/rename files between bucket and local dir [Same sytax than linux]
+		gsutil mv <FILE> <DESTINATION>
+		gsutil mv ada.jpg gs://YOUR-BUCKET-NAME	
+	
+	List files in bucke and info [Same sytax than linux]
+		gsutil ls
+		gsutil ls gs://YOUR-BUCKET-NAME
+
+	Permissions(ACL) [Same sytax than linux]
+	Get, set, or change bucket and/or object ACLs
+		gsutil acl [get/set/ch]
+		gsutil acl ch -u AllUsers:R gs://YOUR-BUCKET-NAME/ada.jpg
+		gsutil acl ch -d AllUsers gs://YOUR-BUCKET-NAME/ada.jpg
+
+	Delete a file [Same sytax than linux]
+		gsutil rm gs://YOUR-BUCKET-NAME/ada.jpg
+	
+	Create an SQL Instance:
+		SQL instances are created from the Cloud Console (Web GUI)
+
+	Connect to your instance from shell:
+		gcloud sql connect myinstance --user=root
+	
+	Create a SQL database (from SQL prompt, once connected to instance):
+		CREATE DATABASE guestbook;
+
+APis:
+	Upload OpenAPI config to Service Management	
+		gcloud endpoints services deploy openapi.yaml
+	
+	Publish a msg to a Pub/Sub topic
+		gcloud pubsub ...
+
+
+
+\|ng$zk"ac~'y$\~
